@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica Adaptativa</title>
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <header class="encabezado">
+      <div>
+        <p class="eyebrow">Matemática II</p>
+        <h1>Práctica Adaptativa</h1>
+        <p class="subtitulo">
+          Plataforma de práctica con retroalimentación según el tipo de error.
+        </p>
+      </div>
+      <div id="estadoApi" class="estado estado-espera">
+        Verificando conexión…
+      </div>
+    </header>
+
+    <main>
+
+      <section id="inicio" class="tarjeta">
+        <h2>Acceso a la práctica</h2>
+
+        <p>
+          Ingresa tu Número de Carnet. Debe contener dos letras iniciales
+          seguidas de cinco dígitos.
+        </p>
+
+        <label for="carnet">Número de Carnet</label>
+
+        <input
+          id="carnet"
+          type="text"
+          maxlength="7"
+          autocomplete="off"
+          placeholder="Ejemplo: AB12345"
+        >
+
+        <div id="mensajeInicio"></div>
+
+        <button id="btnIniciar" class="boton-principal">
+          Cargar práctica
+        </button>
+      </section>
+
+
+      <section id="actividad" class="tarjeta oculto">
+
+        <div class="fila-superior">
+          <div>
+            <p class="eyebrow">Actividad</p>
+            <h2 id="nombreActividad">Cargando…</h2>
+          </div>
+
+          <span id="carnetVisible" class="insignia"></span>
+        </div>
+
+        <p id="descripcionActividad"></p>
+
+        <div class="resumen">
+          <div>
+            <span class="dato-titulo">Ítems cargados</span>
+            <strong id="totalItems">0</strong>
+          </div>
+
+          <div>
+            <span class="dato-titulo">Actividad ID</span>
+            <strong id="actividadId">—</strong>
+          </div>
+        </div>
+
+        <div class="separador"></div>
+
+        <h3>Contenido recibido desde Google Sheets</h3>
+
+        <div id="listaItems" class="lista-items"></div>
+
+        <div class="aviso">
+          Esta primera versión solo comprueba la conexión
+          GitHub Pages → Apps Script → Google Sheets.
+          En el siguiente paso incorporaremos el motor adaptativo.
+        </div>
+      </section>
+
+
+      <section id="errorGeneral" class="tarjeta error-box oculto">
+        <h2>No fue posible cargar la actividad</h2>
+        <p id="textoError"></p>
+      </section>
+
+    </main>
+
+    <footer>
+      Práctica Adaptativa · Plataforma académica
+    </footer>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
